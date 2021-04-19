@@ -11,23 +11,24 @@ namespace CommonBaseType.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TblCommonBaseTypesC : ControllerBase
+    public class CommonBaseTypesController : ControllerBase
     {
         private readonly Contexts _context;
 
-        public TblCommonBaseTypesC(Contexts context)
+        public CommonBaseTypesController(Contexts context)
         {
             _context = context;
         }
-
-        // GET: api/TblCommonBaseTypesC
+       
+        // GET: api/CommonBaseTypes
         [HttpGet]
+       
         public async Task<ActionResult<IEnumerable<TblCommonBaseType>>> GetTblCommonBaseTypes()
         {
             return await _context.TblCommonBaseTypes.ToListAsync();
         }
 
-        // GET: api/TblCommonBaseTypesC/5
+        // GET: api/CommonBaseTypes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TblCommonBaseType>> GetTblCommonBaseType(int id)
         {
@@ -41,7 +42,7 @@ namespace CommonBaseType.Controllers
             return tblCommonBaseType;
         }
 
-        // PUT: api/TblCommonBaseTypesC/5
+        // PUT: api/CommonBaseTypes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -73,7 +74,7 @@ namespace CommonBaseType.Controllers
             return NoContent();
         }
 
-        // POST: api/TblCommonBaseTypesC
+        // POST: api/CommonBaseTypes
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -85,7 +86,7 @@ namespace CommonBaseType.Controllers
             return CreatedAtAction("GetTblCommonBaseType", new { id = tblCommonBaseType.CommonBaseTypeId }, tblCommonBaseType);
         }
 
-        // DELETE: api/TblCommonBaseTypesC/5
+        // DELETE: api/CommonBaseTypes/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<TblCommonBaseType>> DeleteTblCommonBaseType(int id)
         {
