@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CommonBaseType.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,21 @@ namespace Polvina
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            #region Db Context
+
+            services.AddDbContext<BaseType_Context>(Option =>
+            {
+                Option.UseSqlServer("Server=(local);Database=Charity_DB;Trusted_Connection=True;");
+
+            });
+
+
+            #endregion
+            #region InterFace
+
+            services.AddScoped<IBaseTypeRepository, BaseTypeRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

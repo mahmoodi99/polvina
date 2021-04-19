@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CommonBaseType.Model
 {
-    public partial class Contexts : DbContext
+    public partial class BaseType_Context : DbContext
     {
-        public Contexts()
+        public BaseType_Context()
         {
         }
 
-        public Contexts(DbContextOptions<Contexts> options)
+        public BaseType_Context(DbContextOptions<BaseType_Context> options)
             : base(options)
         {
         }
@@ -23,8 +23,8 @@ namespace CommonBaseType.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-9Q51Q00\\TMF;Database=DataModelSection;Trusted_Connection=True;");
+
+                optionsBuilder.UseSqlServer("Server=(local);Database=Charity_DB;Trusted_Connection=True;");
             }
         }
 
