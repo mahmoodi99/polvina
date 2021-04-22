@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CommonBaseData\CommonBaseData.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 

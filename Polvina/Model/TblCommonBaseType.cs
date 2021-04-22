@@ -20,5 +20,6 @@ namespace CommonBaseType.Model
         public string BaseTypeTitle { get; set; }
         [StringLength(3)]
         public string BaseTypeCode { get; set; }
+              
     }
 }

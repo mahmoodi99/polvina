@@ -26,9 +26,21 @@ namespace CommonBaseType.Model
 
 
 
+        public async Task<TblCommonBaseType> ExistsModel(TblCommonBaseType tblCommonBaseType)
+        {
+            
+            tblCommonBaseType = new TblCommonBaseType
+            {
+                BaseTypeCode = tblCommonBaseType.BaseTypeCode,
+                BaseTypeTitle = tblCommonBaseType.BaseTypeTitle
+            };
+            return (tblCommonBaseType);
+        }
+
+
         public async Task<bool> IsExistscode(string value)
         {
-            return await _context.TblCommonBaseTypes.AnyAsync(c => c.BaseTypeCode == value || c.BaseTypeTitle == value);
+            return await _context.TblCommonBaseTypes.AnyAsync(c => c.BaseTypeCode == "value" || c.BaseTypeTitle == "value");
         }
 
 
@@ -52,36 +64,28 @@ namespace CommonBaseType.Model
             return _context.TblCommonBaseTypes.ToList();
         }
 
+
         public async Task<TblCommonBaseType> ws_loadBaseTypeById(int id)
         {
             return await _context.TblCommonBaseTypes.SingleOrDefaultAsync(t => t.CommonBaseTypeId == id);
         }
 
-        //public async Task<TblCommonBaseType> ws_loadBaseTypeByIdIncloud(int id)
-        //{
-        //    return await _context.TblCommonBaseTypes.Include(x => x.TblCommonBaseData).FirstOrDefaultAsync(c => c.CommonBaseTypeId == id);
 
-        //}
 
         public async Task<TblCommonBaseType> ws_loadBaseTypeByTitle(string value)
         {
-            var baseType = await _context.TblCommonBaseTypes.FirstOrDefaultAsync(p => p.BaseTypeCode.Contains("value") || p.BaseTypeTitle.Contains("value"));
-
-
-            return (baseType);
+            return await _context.TblCommonBaseTypes.FirstOrDefaultAsync(c => c.BaseTypeCode == value || c.BaseTypeTitle == value);
         }
+
 
         public async Task<TblCommonBaseType> ws_UpdateBaseType(TblCommonBaseType tblcommandBasetype)
         {
-
-
             _context.TblCommonBaseTypes.Update(tblcommandBasetype);
             await _context.SaveChangesAsync();
             return (tblcommandBasetype);
-
         }
 
-
+        
     }
 
 }

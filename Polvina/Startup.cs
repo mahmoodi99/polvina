@@ -28,6 +28,7 @@ namespace Polvina
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRouting(options => options.LowercaseUrls = true);
 
             #region Db Context
 
@@ -58,6 +59,7 @@ namespace Polvina
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

@@ -9,27 +9,26 @@ using Microsoft.EntityFrameworkCore;
 namespace NeedyAccounts.Model
 {
     [Table("tblNeedyAccounts")]
-    [Index(nameof(NeedyId), nameof(AccountNumber), Name = "IX_tblNeedyid", IsUnique = true)]
-    [Index(nameof(ShebaNumber), Name = "IX_tblshebaNumber", IsUnique = true)]
+    [Index(nameof(NeedyId), nameof(AccountNumber), nameof(ShebaNumber), Name = "UC_NeedyAccountId", IsUnique = true)]
     public partial class TblNeedyAccount
     {
         [Key]
-        [Column("tblNeedyAccounts")]
-        public int TblNeedyAccounts { get; set; }
+        public int NeedyAccountId { get; set; }
         public int BankId { get; set; }
         public int NeedyId { get; set; }
         [Required]
         [StringLength(1000)]
         public string OwnerName { get; set; }
-        [StringLength(20)]
+        [StringLength(10)]
         public string CardNumber { get; set; }
         [Required]
-        [StringLength(10)]
+        [StringLength(20)]
         public string AccountNumber { get; set; }
         [StringLength(500)]
         public string AccountName { get; set; }
         [Required]
         [StringLength(26)]
         public string ShebaNumber { get; set; }
+        public TblCommonBaseData TblCommonBaseData { get; set; }
     }
 }

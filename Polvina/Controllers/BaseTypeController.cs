@@ -13,18 +13,16 @@ namespace CommonBaseType.Controllers
     [ApiController]
     public class BaseTypeController : ControllerBase
     {
-        // private const string V = "این کد وجو دارد";
+
         private IBaseTypeRepository _baseTyperepository;
         public BaseTypeController(IBaseTypeRepository baseTypeRepository)
         {
-            _baseTyperepository = baseTypeRepository;
+            _baseTyperepository = baseTypeRepository;          
         }
 
 
-
-
         // GET: api/<BaseTypeController>
-        [HttpGet]
+        [HttpGet (Name =" ws_loadBaseType")]
         public IEnumerable<TblCommonBaseType> ws_loadBaseType()
         {
             return _baseTyperepository.ws_loadBaseType();
@@ -53,52 +51,59 @@ namespace CommonBaseType.Controllers
         }
 
 
+
+
+
+        //// GET api/<BaseTypeController>/name
+        //[HttpGet("{searchType}/{value}")]
+        //public async Task<IActionResult> Custom_ws_loadBaseType([FromBody] SearchViewModel value)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return  BadRequest(ModelState);
+        //    }
+
+        //    return Ok();
+        //}
+
+
+
+
         // GET api/<BaseTypeController>/name
-        [HttpGet("{name}")]
-        public async Task<IActionResult> ws_loadBaseType([FromBody] string code)
+        [HttpGet("Basetype/{value}")]
+        public async Task<IActionResult> Custom_ws_loadBaseType(string value)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            var baseType = await _baseTyperepository.ws_loadBaseTypeByTitle(code);
 
-            if (baseType == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(baseType);
+            return Ok(await _baseTyperepository.ws_loadBaseTypeByTitle(value));
         }
 
 
 
         // POST api/<BaseTypeController>
         [HttpPost]
-        public async Task<IActionResult> ws_CreateBaseType([FromBody] TblCommonBaseType tblCommonBaseType)
+        public async Task<IActionResult> ws_CreateBaseType( [FromBody] TblCommonBaseType tblCommonBaseType)
         {
 
-            var type = _baseTyperepository.IsExistscode(tblCommonBaseType.BaseTypeTitle);
-            var code = _baseTyperepository.IsExistscode(tblCommonBaseType.BaseTypeCode);
+            var type = _baseTyperepository.ws_loadBaseTypeByTitle(tblCommonBaseType.BaseTypeTitle);
+            var code = _baseTyperepository.ws_loadBaseTypeByTitle(tblCommonBaseType.BaseTypeCode);
+            
 
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (type != null)
+            if (type != null || code != null)
             {
                 return BadRequest("این عنوان وجود دارد");
             }
-            if (code != null)
-            {
-                return BadRequest("این کد وجود دارد");
-            }
+
             await _baseTyperepository.ws_CreateBaseType(tblCommonBaseType);
 
-            return CreatedAtAction("GetTblCommonBaseType", new { id = tblCommonBaseType.CommonBaseTypeId }, tblCommonBaseType);
+            return Ok(tblCommonBaseType);
         }
+
 
 
 
@@ -166,4 +171,8 @@ namespace CommonBaseType.Controllers
             return Ok(baseType);
         }
     }
+
+
+
+
 }
