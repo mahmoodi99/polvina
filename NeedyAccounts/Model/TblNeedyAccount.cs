@@ -29,6 +29,6 @@ namespace NeedyAccounts.Model
         [Required]
         [StringLength(26)]
         public string ShebaNumber { get; set; }
-        public TblCommonBaseData TblCommonBaseData { get; set; }
+        
     }
 }

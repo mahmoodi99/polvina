@@ -29,18 +29,13 @@ namespace CommonBaseData.Entity.Repository
 
 
 
-        public async Task<TblCommonBaseData> IsExistsTblsNeed(int id)
-        {
-            return await _Context.TblCommonBaseData.Include(c => c.TblNeedyAccounts)
-                .FirstOrDefaultAsync(f => f.NeedyAccountId== id);
-        }
+        //public async Task<TblCommonBaseData> IsExistsTblsNeed(int id)
+        //{
+        //    return await _Context.TblCommonBaseData.Include(c => c.TblNeedyAccounts)
+        //        .FirstOrDefaultAsync(f => f.NeedyAccountId== id);
+        //}
 
-        private TblCommonBaseData ok(object p)
-        {
-            throw new NotImplementedException();
-        }
-
-        //  Guid.NewGuid().ToString("")
+      
 
 
         public async Task<TblCommonBaseData> ws_CreateBaseValue(TblCommonBaseData TblCommonBaseData)

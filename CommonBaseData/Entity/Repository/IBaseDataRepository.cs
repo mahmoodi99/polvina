@@ -16,6 +16,6 @@ namespace CommonBaseData.Entity.Repository
         Task<TblCommonBaseData> ws_DeleteBaseValue(int id);
         Task<bool> IsExists(int id);
         Task<bool> IsExistscode(string value);
-        Task<TblCommonBaseData> IsExistsTblsNeed(int id);
+        //Task<TblCommonBaseData> IsExistsTblsNeed(int id);
     }
 }
