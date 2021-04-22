@@ -23,8 +23,7 @@ namespace CommonBaseData.Model
         public string BaseValue { get; set; }
         public int? CommonBaseTypeId { get; set; }
 
-        public TblNeedyAccount TblNeedyAccounts { get; set; }
-        public TblCharityAccount TblCharityAccount { get; set; }
-      
+        
+       
     }
 }
