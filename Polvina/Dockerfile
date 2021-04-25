@@ -11,9 +11,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1903 AS build
 WORKDIR /src
 COPY ["Polvina/CommonBaseType.csproj", "Polvina/"]
-COPY ["CommonBaseData/CommonBaseData.csproj", "CommonBaseData/"]
-COPY ["NeedyAccounts/NeedyAccounts.csproj", "NeedyAccounts/"]
-COPY ["tblPersonal/tblPersonal.csproj", "tblPersonal/"]
 RUN dotnet restore "Polvina/CommonBaseType.csproj"
 COPY . .
 WORKDIR "/src/Polvina"
