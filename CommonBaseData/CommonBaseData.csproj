@@ -18,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CharityAccounts\CharityAccounts.csproj" />
+    <ProjectReference Include="..\NeedyAccounts\NeedyAccounts.csproj" />
     <ProjectReference Include="..\Polvina\CommonBaseType.csproj" />
   </ItemGroup>
 

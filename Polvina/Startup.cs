@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,21 +28,27 @@ namespace Polvina
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen();
+            services.AddRouting(options => options.LowercaseUrls = true);
 
-            services.AddDbContext<Contexts>(Option => Option.UseSqlServer(Configuration.GetConnectionString("MycontectionString")));
+            #region Db Context
+
+            services.AddDbContext<BaseType_Context>(Option =>
+            {
+                Option.UseSqlServer("Server=(local);Database=Charity_DB;Trusted_Connection=True;");
+
+            });
+
+
+            #endregion
+            #region InterFace
+
+            services.AddScoped<IBaseTypeRepository, BaseTypeRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>{
-                c.SwaggerEndpoint("/swagger/v1/swagger.json","my api v1");
-                });
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,12 +59,11 @@ namespace Polvina
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
-               
                 endpoints.MapControllers();
-              
             });
         }
     }

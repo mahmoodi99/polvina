@@ -9,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace CharityAccounts.Model
 {
     [Table("tblCharityAccounts")]
-    [Index(nameof(AccountNumber), Name = "IX_tblCharityAccounts", IsUnique = true)]
+    [Index(nameof(AccountNumber), Name = "UQ__tblChari__BE2ACD6F105F54DB", IsUnique = true)]
+    //[Index(nameof(AccountNumber), Name = "UQ__tblChari__BE2ACD6FA5AA85B5", IsUnique = true)]
     public partial class TblCharityAccount
     {
         [Key]
@@ -21,6 +22,7 @@ namespace CharityAccounts.Model
         [Required]
         [StringLength(1000)]
         public string OwnerName { get; set; }
+        [Required]
         [StringLength(20)]
         public string CardNumber { get; set; }
         [Required]
