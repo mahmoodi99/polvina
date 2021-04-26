@@ -99,12 +99,15 @@ namespace CommonBaseType.Controllers
                 return BadRequest("این عنوان وجود دارد");
             }
 
+
             await _baseTyperepository.ws_CreateBaseType(tblCommonBaseType);
 
             return Ok(tblCommonBaseType);
         }
 
 
+
+        //test
 
 
 
@@ -114,6 +117,7 @@ namespace CommonBaseType.Controllers
         {
             var title = _baseTyperepository.IsExistscode(tblCommonBaseType.BaseTypeTitle);
             var code = _baseTyperepository.IsExistscode(tblCommonBaseType.BaseTypeCode);
+
 
 
             if (!ModelState.IsValid)
